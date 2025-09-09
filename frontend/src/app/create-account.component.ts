@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,12 +24,17 @@ interface CreateAccountRequest {
 })
 export class CreateAccountComponent {
   account: CreateAccountRequest = { nome: '', cpf: '', dataNascimento: '', limiteSaqueDiario: 0, tipoConta: 1 };
-  createdId?: number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   create() {
     this.http.post<any>('http://localhost:8080/contas', this.account)
-      .subscribe(res => this.createdId = res.id);
+      .subscribe({
+        next: () => {
+          alert('Conta criada com sucesso');
+          this.router.navigate(['/']);
+        },
+        error: () => alert('Erro ao criar conta')
+      });
   }
 }

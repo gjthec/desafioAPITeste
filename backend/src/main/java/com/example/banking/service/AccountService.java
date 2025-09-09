@@ -115,4 +115,10 @@ public class AccountService {
         return accountRepository.findById(idConta)
                 .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
     }
+
+    public Long getAccountIdByCpf(String cpf) {
+        Account account = accountRepository.findByPessoaCpf(cpf)
+                .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
+        return account.getIdConta();
+    }
 }

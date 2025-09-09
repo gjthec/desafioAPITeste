@@ -62,4 +62,9 @@ public class AccountController {
     public ResponseEntity<Account> getAccount(@PathVariable Long id) {
         return ResponseEntity.ok(service.getAccount(id));
     }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<Long> getAccountIdByCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok(service.getAccountIdByCpf(cpf));
+    }
 }

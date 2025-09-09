@@ -39,14 +39,26 @@ export class AccountComponent {
   deposit() {
     if (this.depositValue != null) {
       this.http.post(`http://localhost:8080/contas/${this.accountId}/deposito`, { valor: this.depositValue })
-        .subscribe(() => this.loadBalance());
+        .subscribe({
+          next: () => {
+            this.loadBalance();
+            alert('Depósito realizado com sucesso');
+          },
+          error: () => alert('Erro ao realizar depósito')
+        });
     }
   }
 
   withdraw() {
     if (this.withdrawValue != null) {
       this.http.post(`http://localhost:8080/contas/${this.accountId}/saque`, { valor: this.withdrawValue })
-        .subscribe(() => this.loadBalance());
+        .subscribe({
+          next: () => {
+            this.loadBalance();
+            alert('Saque realizado com sucesso');
+          },
+          error: () => alert('Erro ao realizar saque')
+        });
     }
   }
 
@@ -56,6 +68,12 @@ export class AccountComponent {
     if (this.endDate) params.push(`endDate=${this.endDate}`);
     const query = params.length ? '?' + params.join('&') : '';
     this.http.get<any[]>(`http://localhost:8080/contas/${this.accountId}/extrato${query}`)
-      .subscribe(t => this.transactions = t);
+      .subscribe({
+        next: t => {
+          this.transactions = t;
+          alert('Extrato carregado');
+        },
+        error: () => alert('Erro ao carregar extrato')
+      });
   }
 }
