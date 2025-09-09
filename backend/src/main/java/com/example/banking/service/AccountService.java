@@ -28,8 +28,16 @@ public class AccountService {
     }
 
     public Account createAccount(CreateAccountRequest request) {
-        Person person = personRepository.findById(request.getIdPessoa())
-                .orElseThrow(() -> new IllegalArgumentException("Pessoa não encontrada"));
+        if (personRepository.findByCpf(request.getCpf()).isPresent()) {
+            throw new IllegalArgumentException("Pessoa já existe");
+        }
+
+        Person person = new Person();
+        person.setNome(request.getNome());
+        person.setCpf(request.getCpf());
+        person.setDataNascimento(request.getDataNascimento());
+        person = personRepository.save(person);
+
         Account account = new Account();
         account.setPessoa(person);
         account.setSaldo(BigDecimal.ZERO);
