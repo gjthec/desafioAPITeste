@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { StatementTableComponent } from './statement-table.component';
+import { StatementTableComponent } from '../statement-table.component';
 
 @Component({
   selector: 'app-account',
