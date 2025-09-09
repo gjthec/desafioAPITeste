@@ -89,3 +89,4 @@ Se você for aprovad(a) nesta etapa, será convidado para uma entrevista final.
 ## Frontend
 
  - Interface Angular estilizada com Angular Material, incluindo login por CPF, criação de conta e operações bancárias.
+ - Backend liberado via CORS para requisições da interface em `http://localhost:4200`.

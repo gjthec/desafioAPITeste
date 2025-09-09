@@ -55,6 +55,7 @@
    mvn spring-boot:run
    ```
 3. A API estará disponível em `http://localhost:8080`.
+4. O backend já está configurado com CORS para aceitar requisições do frontend em `http://localhost:4200`.
 
 ## Frontend
 1. Acesse a pasta `frontend`.
