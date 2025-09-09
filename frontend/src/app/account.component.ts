@@ -7,11 +7,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { StatementTableComponent } from './statement-table.component';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule],
+  imports: [CommonModule, FormsModule, RouterModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule, StatementTableComponent],
   templateUrl: './account.component.html'
 })
 export class AccountComponent {
@@ -22,6 +23,7 @@ export class AccountComponent {
   startDate?: string;
   endDate?: string;
   transactions?: any[];
+  withdrawLimit?: number;
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     this.accountId = Number(this.route.snapshot.paramMap.get('id'));
@@ -29,6 +31,7 @@ export class AccountComponent {
 
   ngOnInit() {
     this.loadBalance();
+    this.loadWithdrawLimit();
   }
 
   loadBalance() {
@@ -42,6 +45,7 @@ export class AccountComponent {
         .subscribe({
           next: () => {
             this.loadBalance();
+            this.loadWithdrawLimit();
             alert('Depósito realizado com sucesso');
           },
           error: () => alert('Erro ao realizar depósito')
@@ -55,6 +59,7 @@ export class AccountComponent {
         .subscribe({
           next: () => {
             this.loadBalance();
+            this.loadWithdrawLimit();
             alert('Saque realizado com sucesso');
           },
           error: () => alert('Erro ao realizar saque')
@@ -75,5 +80,10 @@ export class AccountComponent {
         },
         error: () => alert('Erro ao carregar extrato')
       });
+  }
+
+  loadWithdrawLimit() {
+    this.http.get<number>(`http://localhost:8080/contas/${this.accountId}/limite-diario`)
+      .subscribe(l => this.withdrawLimit = l);
   }
 }

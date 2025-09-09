@@ -2,6 +2,7 @@
   <mat-card>
     <h2>Conta {{ accountId }}</h2>
     <div>Saldo: {{ balance }}</div>
+    <div>Limite diário restante: {{ withdrawLimit }}</div>
 
     <h3>Depósito</h3>
     <mat-form-field appearance="fill">
@@ -27,9 +28,7 @@
       <input matInput type="date" [(ngModel)]="endDate" />
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="statement()">Consultar</button>
-    <ul>
-      <li *ngFor="let t of transactions">{{ t.dataTransacao }} - {{ t.valor }}</li>
-    </ul>
+    <app-statement-table [transactions]="transactions"></app-statement-table>
     <p><a routerLink="/">Sair</a></p>
   </mat-card>
 </div>

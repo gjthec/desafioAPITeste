@@ -44,6 +44,11 @@ public class AccountController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{id}/limite-diario")
+    public ResponseEntity<BigDecimal> remainingLimit(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getRemainingDailyLimit(id));
+    }
+
     @PostMapping("/{id}/bloqueio")
     public ResponseEntity<Void> block(@PathVariable Long id) {
         service.block(id);
