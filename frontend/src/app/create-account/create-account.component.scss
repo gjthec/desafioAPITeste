@@ -1,0 +1,76 @@
+.create-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  gap: 24px;
+  padding: 16px;
+
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: #f8fafc;
+}
+
+/* Header / Ícone */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+
+  mat-icon {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    color: #34d399; /* teal */
+  }
+
+  h1 { margin: 8px 0 0; font-weight: 700; }
+  p { margin: 0; opacity: .8; }
+}
+
+/* Card mais claro + blur */
+.create-card {
+  width: min(480px, 92vw);
+  padding: 28px 24px;
+  border-radius: 18px !important;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.12); /* ↑ contraste */
+  color: #f8fafc;
+  box-shadow: 0 12px 28px rgba(0,0,0,.5);
+
+  h2 { margin-bottom: 16px; text-align: center; }
+
+  /* Inputs mais claros e legíveis */
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: rgba(255, 255, 255, 0.15) !important; /* fundo do input */
+    border-radius: 10px;
+  }
+  ::ng-deep .mat-mdc-form-field-flex { color: #f8fafc !important; }
+  ::ng-deep .mat-mdc-form-field-label { color: #e5e7eb !important; } /* label */
+  ::ng-deep .mat-mdc-input-element,
+  ::ng-deep .mat-mdc-select-value { color: #f8fafc !important; }       /* texto */
+  ::ng-deep .mat-mdc-select-arrow { color: #cbd5e1 !important; }       /* seta */
+
+  /* Focus/hover com azul para feedback */
+  ::ng-deep .mdc-text-field--focused,
+  ::ng-deep .mdc-text-field:hover {
+    box-shadow: 0 0 0 1px #60a5fa inset;
+  }
+
+  /* Mensagens de erro (se usar validators) */
+  ::ng-deep .mat-mdc-form-field-error { color: #fca5a5 !important; }
+}
+
+/* Botões e links */
+.full { width: 100%; margin-top: 14px; }
+
+.back-link {
+  margin-top: 12px; text-align: center;
+  a { color: #93c5fd; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+}
+
+/* Rodapé */
+.legal { opacity: .6; font-size: .9rem; text-align: center; }

@@ -1,11 +1,24 @@
-<div class="center-container">
-  <mat-card>
+<div class="login-page">
+  <div class="brand">
+    <mat-icon>lock</mat-icon>
+    <h1>Bem-vindo</h1>
+    <p>Acesse sua conta</p>
+  </div>
+
+  <mat-card class="login-card">
     <h2>Entrar</h2>
-    <mat-form-field appearance="fill">
+
+    <mat-form-field appearance="outline" class="full">
       <mat-label>CPF</mat-label>
-      <input matInput [(ngModel)]="cpf" />
+      <input matInput [(ngModel)]="cpf" placeholder="000.000.000-00" required />
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="login()">Entrar</button>
-    <p><a routerLink="/create">Criar conta</a></p>
+
+    <button mat-raised-button color="primary" class="full" (click)="login()">
+      Entrar
+    </button>
+
+    <button mat-stroked-button class="full" routerLink="/create">
+      Criar conta
+    </button>
   </mat-card>
 </div>

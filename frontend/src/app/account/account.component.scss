@@ -1,0 +1,131 @@
+.account-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  gap: 24px;
+  padding: clamp(16px, 4vw, 32px);
+
+  background:
+    radial-gradient(1200px 600px at 80% -20%, rgba(99, 102, 241, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 0% 100%, rgba(16, 185, 129, 0.12), transparent 60%),
+    linear-gradient(180deg, #0f172a 0%, #0b1220 100%);
+  color: #e5e7eb;
+}
+
+.brand {
+  text-align: center;
+
+  mat-icon {
+    font-size: 52px;
+    width: 52px; height: 52px;
+    color: #93c5fd;
+  }
+  h1 { margin: 8px 0 0; font-weight: 700; letter-spacing: .2px; }
+  .subtitle { margin: 2px 0 0; opacity: .8; }
+}
+
+.account-card {
+  width: min(980px, 96vw);
+  padding: 24px;
+  border-radius: 18px !important;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.12); // mais claro
+  box-shadow: 0 12px 28px rgba(0,0,0,.5);
+  color: #f8fafc;
+
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .kpi {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+
+    mat-icon { opacity: .9; }
+    span { font-size: .9rem; opacity: .85; }
+    strong { display: block; font-size: 1.2rem; margin-top: 2px; }
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    padding: 16px 0;
+  }
+
+  .block {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+
+    h3 {
+      display: flex; align-items: center; gap: 8px;
+      margin: 0 0 8px; font-weight: 700;
+    }
+  }
+
+  .statement {
+    margin-top: 10px;
+
+    h3 {
+      display: flex; align-items: center; gap: 8px;
+      margin: 0 0 10px; font-weight: 700;
+    }
+
+    .dates {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+  }
+
+  /* Inputs mais claros */
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 10px;
+  }
+  ::ng-deep .mat-mdc-form-field-label { color: #e5e7eb !important; }
+  ::ng-deep .mat-mdc-input-element,
+  ::ng-deep .mat-mdc-select-value { color: #f8fafc !important; }
+  ::ng-deep .mat-mdc-select-arrow { color: #cbd5e1 !important; }
+  ::ng-deep .mat-mdc-form-field-error { color: #fca5a5 !important; }
+  ::ng-deep .mdc-text-field--focused,
+  ::ng-deep .mdc-text-field:hover {
+    box-shadow: 0 0 0 1px #60a5fa inset;
+  }
+
+  .full { width: 100%; }
+  .query-btn { height: 56px; padding: 0 18px; }
+}
+
+.footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+
+  a[mat-button] mat-icon { margin-right: 6px; }
+}
+
+.legal {
+  opacity: .6;
+  font-size: .9rem;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .account-card .actions,
+  .account-card .kpis { grid-template-columns: 1fr; }
+  .account-card .statement .dates { grid-template-columns: 1fr; }
+}
