@@ -80,3 +80,13 @@ Se você for aprovad(a) nesta etapa, será convidado para uma entrevista final.
       3. Desenvolva. Você terá 7 (sete) dias a partir da data do envio do desafio; 
       4. Após concluir seu trabalho faça um push; 
       5. Envie um e-mail à pessoa que está mantendo o contato com você durante o processo notificando a finalização do desafio para validação.
+
+## Documentação
+
+- [Manual de Execução](docs/manual.md)
+- [Documentação da API](docs/api.md)
+
+## Frontend
+
+ - Interface Angular estilizada com Angular Material, incluindo login por CPF, criação de conta e operações bancárias.
+ - Backend liberado via CORS para requisições da interface em `http://localhost:4200`.
