@@ -1,0 +1,56 @@
+.table-container {
+  margin-top: 16px;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(4px);
+
+  thead {
+    position: sticky;
+    top: 0;
+    background: rgba(15, 23, 42, 0.9); /* slate-900 */
+    color: #f8fafc;
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  th.right, td.right {
+    text-align: right;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+
+  tbody tr:hover {
+    background: rgba(255,255,255,0.08);
+  }
+}
+
+.deposit {
+  color: #22c55e; /* verde */
+  font-weight: 600;
+}
+
+.withdraw {
+  color: #ef4444; /* vermelho */
+  font-weight: 600;
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}

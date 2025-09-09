@@ -1,0 +1,76 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 16px;
+
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #f8fafc;
+}
+
+.brand {
+  text-align: center;
+
+  mat-icon {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    color: #60a5fa; // azul
+  }
+
+  h1 {
+    margin: 8px 0 0;
+    font-weight: bold;
+  }
+  p {
+    margin: 0;
+    opacity: 0.8;
+  }
+}
+
+.login-card {
+  width: min(420px, 90%);
+  padding: 28px 24px;
+  border-radius: 18px !important;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.12); // mais claro
+  color: #f8fafc;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+
+  h2 {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  // inputs mais claros
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px;
+  }
+
+  ::ng-deep .mat-mdc-form-field-flex {
+    color: #f8fafc !important;
+  }
+
+  ::ng-deep .mdc-text-field--focused {
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 1px #60a5fa inset;
+  }
+
+  ::ng-deep .mat-mdc-form-field-label {
+    color: #d1d5db !important; // cinza claro
+  }
+
+  ::ng-deep .mat-mdc-input-element {
+    color: #f8fafc !important;
+  }
+}
+
+.full {
+  width: 100%;
+  margin-top: 14px;
+}

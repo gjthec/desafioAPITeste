@@ -1,15 +1,30 @@
-<table *ngIf="transactions?.length">
-  <thead>
-    <tr>
-      <th>Data</th>
-      <th>Valor</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let t of transactions">
-      <td>{{ t.dataTransacao }}</td>
-      <td>{{ t.valor }}</td>
-    </tr>
-  </tbody>
-</table>
-<div *ngIf="transactions && transactions.length === 0">Nenhuma movimentação encontrada.</div>
+<div class="table-container" *ngIf="transactions">
+  <table *ngIf="transactions.length; else emptyState">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Tipo</th>
+        <th class="right">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of transactions">
+        <td>{{ t.dataTransacao | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>
+          <span [ngClass]="t.valor >= 0 ? 'deposit' : 'withdraw'">
+            {{ t.valor >= 0 ? 'Depósito' : 'Saque' }}
+          </span>
+        </td>
+        <td class="right">
+          <span [ngClass]="t.valor >= 0 ? 'deposit' : 'withdraw'">
+            {{ t.valor | currency:'BRL':'symbol-narrow':'1.2-2' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #emptyState>
+    <div class="empty">Nenhuma movimentação encontrada.</div>
+  </ng-template>
+</div>

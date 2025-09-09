@@ -1,0 +1,50 @@
+<div class="create-page">
+  <div class="brand">
+    <mat-icon>person_add</mat-icon>
+    <h1>Nova Conta</h1>
+    <p>Preencha os dados para criar sua conta</p>
+  </div>
+
+  <mat-card class="create-card">
+    <h2>Criar conta</h2>
+
+    <form (ngSubmit)="create()">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="account.nome" name="nome" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>CPF</mat-label>
+        <input matInput [(ngModel)]="account.cpf" name="cpf" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput type="date" [(ngModel)]="account.dataNascimento" name="dataNascimento" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Limite de saque diário</mat-label>
+        <input matInput type="number" [(ngModel)]="account.limiteSaqueDiario" name="limite" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Tipo de conta</mat-label>
+        <mat-select [(ngModel)]="account.tipoConta" name="tipoConta" required>
+          <mat-option [value]="1">Corrente</mat-option>
+          <mat-option [value]="2">Poupança</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <button mat-raised-button color="primary" class="full" type="submit" [disabled]="loading">
+        {{ loading ? 'Criando...' : 'Criar' }}
+      </button>
+    </form>
+
+    <p class="back-link"><a routerLink="/">← Voltar</a></p>
+  </mat-card>
+
+  <footer class="legal">© {{ year }} — Sua Empresa</footer>
+</div>

@@ -1,0 +1,93 @@
+<div class="account-page">
+  <div class="brand">
+    <mat-icon>account_balance</mat-icon>
+    <h1>Conta #{{ accountId }}</h1>
+    <p class="subtitle">Gerencie seu saldo, saques e extratos</p>
+  </div>
+
+  <mat-card class="account-card">
+    <!-- Header KPIs -->
+    <div class="kpis">
+      <div class="kpi">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <div>
+          <span>Saldo</span>
+          <strong>{{ balance ?? 0 | currency:'BRL':'symbol-narrow':'1.2-2' }}</strong>
+        </div>
+      </div>
+      <div class="kpi">
+        <mat-icon>payments</mat-icon>
+        <div>
+          <span>Limite diário restante</span>
+          <strong>{{ withdrawLimit ?? 0 | currency:'BRL':'symbol-narrow':'1.2-2' }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Ações: Depósito / Saque -->
+    <div class="actions">
+      <section class="block">
+        <h3><mat-icon>south</mat-icon> Depósito</h3>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Valor</mat-label>
+          <span matPrefix>R$&nbsp;</span>
+          <input matInput type="number" min="0" step="0.01" [(ngModel)]="depositValue" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="full" (click)="deposit()"
+          [disabled]="!isValidAmount(depositValue) || loadingDeposit">
+          <mat-icon>check_circle</mat-icon>
+          {{ loadingDeposit ? 'Depositando...' : 'Depositar' }}
+        </button>
+      </section>
+
+      <section class="block">
+        <h3><mat-icon>north</mat-icon> Saque</h3>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Valor</mat-label>
+          <span matPrefix>R$&nbsp;</span>
+          <input matInput type="number" min="0" step="0.01" [(ngModel)]="withdrawValue" />
+        </mat-form-field>
+        <button mat-raised-button color="warn" class="full" (click)="withdraw()"
+          [disabled]="!isValidAmount(withdrawValue) || loadingWithdraw">
+          <mat-icon>atm</mat-icon>
+          {{ loadingWithdraw ? 'Sacando...' : 'Sacar' }}
+        </button>
+      </section>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Extrato -->
+    <section class="statement">
+      <h3><mat-icon>receipt_long</mat-icon> Extrato</h3>
+      <div class="dates">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Data inicial</mat-label>
+          <input matInput type="date" [(ngModel)]="startDate" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Data final</mat-label>
+          <input matInput type="date" [(ngModel)]="endDate" />
+        </mat-form-field>
+        <button mat-stroked-button color="primary" class="query-btn" (click)="statement()"
+          [disabled]="loadingStatement">
+          <mat-icon>search</mat-icon>
+          {{ loadingStatement ? 'Consultando...' : 'Consultar' }}
+        </button>
+      </div>
+
+      <app-statement-table [transactions]="transactions"></app-statement-table>
+    </section>
+
+    <div class="footer-actions">
+      <a mat-button routerLink="/">
+        <mat-icon>logout</mat-icon>
+        Sair
+      </a>
+    </div>
+  </mat-card>
+
+  <footer class="legal">© {{ year }} — Sua Empresa</footer>
+</div>
