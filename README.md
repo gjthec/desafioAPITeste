@@ -88,4 +88,4 @@ Se você for aprovad(a) nesta etapa, será convidado para uma entrevista final.
 
 ## Frontend
 
-- Interface Angular com página de login por CPF, criação de conta e operações bancárias.
+ - Interface Angular estilizada com Angular Material, incluindo login por CPF, criação de conta e operações bancárias.

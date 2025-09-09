@@ -1,24 +1,35 @@
-<div>
-  <h2>Conta {{ accountId }}</h2>
-  <div>Saldo: {{ balance }}</div>
-  <div>
+<div class="center-container">
+  <mat-card>
+    <h2>Conta {{ accountId }}</h2>
+    <div>Saldo: {{ balance }}</div>
+
     <h3>Depósito</h3>
-    <input type="number" [(ngModel)]="depositValue" />
-    <button (click)="deposit()">Depositar</button>
-  </div>
-  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" [(ngModel)]="depositValue" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="deposit()">Depositar</button>
+
     <h3>Saque</h3>
-    <input type="number" [(ngModel)]="withdrawValue" />
-    <button (click)="withdraw()">Sacar</button>
-  </div>
-  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Valor</mat-label>
+      <input matInput type="number" [(ngModel)]="withdrawValue" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="withdraw()">Sacar</button>
+
     <h3>Extrato</h3>
-    <input type="date" [(ngModel)]="startDate" />
-    <input type="date" [(ngModel)]="endDate" />
-    <button (click)="statement()">Consultar</button>
+    <mat-form-field appearance="fill">
+      <mat-label>Data inicial</mat-label>
+      <input matInput type="date" [(ngModel)]="startDate" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Data final</mat-label>
+      <input matInput type="date" [(ngModel)]="endDate" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="statement()">Consultar</button>
     <ul>
       <li *ngFor="let t of transactions">{{ t.dataTransacao }} - {{ t.valor }}</li>
     </ul>
-  </div>
-  <p><a routerLink="/">Sair</a></p>
+    <p><a routerLink="/">Sair</a></p>
+  </mat-card>
 </div>

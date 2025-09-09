@@ -1,1 +1,26 @@
-/* Add global styles here */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --bank-primary: #0d47a1;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 64px);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background-color: var(--bank-primary);
+  color: #fff;
+}
