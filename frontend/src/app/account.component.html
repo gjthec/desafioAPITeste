@@ -1,5 +1,24 @@
 <div>
-  <input type="number" [(ngModel)]="accountId" placeholder="ID da conta" />
-  <button (click)="load()">Buscar saldo</button>
-  <div *ngIf="balance !== undefined">Saldo: {{ balance }}</div>
+  <h2>Conta {{ accountId }}</h2>
+  <div>Saldo: {{ balance }}</div>
+  <div>
+    <h3>Depósito</h3>
+    <input type="number" [(ngModel)]="depositValue" />
+    <button (click)="deposit()">Depositar</button>
+  </div>
+  <div>
+    <h3>Saque</h3>
+    <input type="number" [(ngModel)]="withdrawValue" />
+    <button (click)="withdraw()">Sacar</button>
+  </div>
+  <div>
+    <h3>Extrato</h3>
+    <input type="date" [(ngModel)]="startDate" />
+    <input type="date" [(ngModel)]="endDate" />
+    <button (click)="statement()">Consultar</button>
+    <ul>
+      <li *ngFor="let t of transactions">{{ t.dataTransacao }} - {{ t.valor }}</li>
+    </ul>
+  </div>
+  <p><a routerLink="/">Sair</a></p>
 </div>

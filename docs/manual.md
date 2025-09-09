@@ -64,6 +64,8 @@
    npm start
    ```
 3. A interface estará disponível em `http://localhost:4200`.
+4. A página inicial permite o login informando o CPF da conta ou o acesso à tela de criação de conta.
+5. Após o login é possível realizar depósitos, saques e consultar o extrato da conta.
 
 ## Testes
 Para executar os testes automatizados do backend:

@@ -85,3 +85,7 @@ Se você for aprovad(a) nesta etapa, será convidado para uma entrevista final.
 
 - [Manual de Execução](docs/manual.md)
 - [Documentação da API](docs/api.md)
+
+## Frontend
+
+- Interface Angular com página de login por CPF, criação de conta e operações bancárias.

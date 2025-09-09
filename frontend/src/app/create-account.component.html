@@ -1,0 +1,13 @@
+<div>
+  <h2>Criar conta</h2>
+  <form (ngSubmit)="create()">
+    <input type="text" [(ngModel)]="account.nome" name="nome" placeholder="Nome" required />
+    <input type="text" [(ngModel)]="account.cpf" name="cpf" placeholder="CPF" required />
+    <input type="date" [(ngModel)]="account.dataNascimento" name="dataNascimento" required />
+    <input type="number" [(ngModel)]="account.limiteSaqueDiario" name="limite" placeholder="Limite de saque diário" required />
+    <input type="number" [(ngModel)]="account.tipoConta" name="tipoConta" placeholder="Tipo de conta" required />
+    <button type="submit">Criar</button>
+  </form>
+  <div *ngIf="createdId">Conta criada com ID {{ createdId }}</div>
+  <p><a routerLink="/">Voltar</a></p>
+</div>
