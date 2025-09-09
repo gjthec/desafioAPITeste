@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,11 +17,18 @@ import { MatCardModule } from '@angular/material/card';
 export class LoginComponent {
   cpf = '';
 
-  constructor(private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login() {
     if (this.cpf) {
-      this.router.navigate(['/account', this.cpf]);
+      this.http.get<number>(`http://localhost:8080/contas/cpf/${this.cpf}`)
+        .subscribe({
+          next: id => {
+            alert('Login realizado com sucesso');
+            this.router.navigate(['/account', id]);
+          },
+          error: () => alert('Conta não encontrada')
+        });
     }
   }
 }

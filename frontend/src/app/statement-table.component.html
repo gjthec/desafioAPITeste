@@ -1,0 +1,15 @@
+<table *ngIf="transactions?.length">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of transactions">
+      <td>{{ t.dataTransacao }}</td>
+      <td>{{ t.valor }}</td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="transactions && transactions.length === 0">Nenhuma movimentação encontrada.</div>

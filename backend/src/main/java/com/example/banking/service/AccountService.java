@@ -84,6 +84,10 @@ public class AccountService {
         if (account.getSaldo().compareTo(request.getValor()) < 0) {
             throw new IllegalStateException("Saldo insuficiente");
         }
+        BigDecimal remaining = getRemainingDailyLimit(idConta);
+        if (request.getValor().compareTo(remaining) > 0) {
+            throw new IllegalStateException("Limite de saque diário excedido");
+        }
         account.setSaldo(account.getSaldo().subtract(request.getValor()));
         accountRepository.save(account);
 
@@ -92,6 +96,25 @@ public class AccountService {
         t.setValor(request.getValor().negate());
         t.setDataTransacao(LocalDateTime.now());
         transactionRepository.save(t);
+    }
+
+    public BigDecimal getRemainingDailyLimit(Long idConta) {
+        Account account = accountRepository.findById(idConta)
+                .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
+        BigDecimal limit = account.getLimiteSaqueDiario();
+        if (limit == null) {
+            return BigDecimal.ZERO;
+        }
+        BigDecimal withdrawn = transactionRepository
+                .findByContaIdContaAndDataTransacaoBetween(
+                        idConta,
+                        LocalDate.now().atStartOfDay(),
+                        LocalDate.now().plusDays(1).atStartOfDay())
+                .stream()
+                .filter(t -> t.getValor().compareTo(BigDecimal.ZERO) < 0)
+                .map(t -> t.getValor().abs())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return limit.subtract(withdrawn);
     }
 
     public void block(Long idConta) {
@@ -114,5 +137,11 @@ public class AccountService {
     public Account getAccount(Long idConta) {
         return accountRepository.findById(idConta)
                 .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
+    }
+
+    public Long getAccountIdByCpf(String cpf) {
+        Account account = accountRepository.findByPessoaCpf(cpf)
+                .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
+        return account.getIdConta();
     }
 }
