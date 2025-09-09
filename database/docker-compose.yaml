@@ -1,0 +1,32 @@
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql-bank
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_bank_data:/var/opt/mssql
+    networks:
+      - banking-net
+
+  sqlpad:
+    image: sqlpad/sqlpad:latest
+    container_name: sqlpad
+    environment:
+      - SQLPAD_ADMIN=admin@example.com
+      - SQLPAD_ADMIN_PASSWORD=Admin123!
+    ports:
+      - "3050:3000"
+    depends_on:
+      - mssql
+    networks:
+      - banking-net
+
+volumes:
+  mssql_bank_data:
+
+networks:
+  banking-net:
