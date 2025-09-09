@@ -49,8 +49,16 @@ public class AccountService {
     }
 
     public void deposit(Long idConta, OperationRequest request) {
+        if (request.getValor() == null || request.getValor().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Valor de depósito inválido");
+        }
+
         Account account = accountRepository.findById(idConta)
                 .orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
+        if (!account.getFlagAtivo()) {
+            throw new IllegalStateException("Conta bloqueada");
+        }
+
         account.setSaldo(account.getSaldo().add(request.getValor()));
         accountRepository.save(account);
 
